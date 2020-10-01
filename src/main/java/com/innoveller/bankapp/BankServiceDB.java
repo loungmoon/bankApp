@@ -1,5 +1,4 @@
 package com.innoveller.bankapp;
-
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
@@ -60,7 +59,7 @@ public class BankServiceDB implements  BankService {
 
     @Override
     public BankAccount findAccount(Long id) throws BankException {
-        BankAccount bankAccount=null;
+        BankAccount bankAccount;
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from bank_account where bank_account.id=" + id);
@@ -74,7 +73,7 @@ public class BankServiceDB implements  BankService {
             double balance = calculatedTotalBalance(rs.getLong(1));
             bankAccount = new BankAccount(rs.getLong(1), rs.getInt(2), rs.getString(3), bankAccountType, LocalDate.parse(rs.getString(5)), balance);
         }catch (SQLException e){
-           throw new BankException("sql error"+e);
+           throw new BankException("Sql statement error for find this account");
         } return  bankAccount;
     }
 
@@ -106,7 +105,7 @@ public class BankServiceDB implements  BankService {
             double balanceAmount = calculatedTotalBalance(bank_account_id);
             bankAccount = new BankAccount(rs.getLong(1), rs.getInt(2), rs.getString(3), bankAccountType, LocalDate.parse(rs.getString(5)), balanceAmount);
         }catch (SQLException e){
-            throw new BankException("sql error"+e);
+            throw new BankException("Sql statement error for create this account");
         }
         return  bankAccount;
     }
@@ -116,7 +115,7 @@ public class BankServiceDB implements  BankService {
         try{
             saveTransaction(amount, TransactionType.DEPOSIT, account.getId());
         }catch (SQLException e){
-            throw new BankException("sql error"+e);
+            throw new BankException("Sql statement error for deposit this account");
         }
 
     }
@@ -133,7 +132,7 @@ public class BankServiceDB implements  BankService {
         } catch (IOException e) {
             System.out.println("Withdraw fail at amount  " + amount);
         }catch (SQLException ex){
-            throw new BankException("sql error"+ex);
+            throw new BankException("Sql statement error for withdraw this account");
         }
     }
 
@@ -152,7 +151,7 @@ public class BankServiceDB implements  BankService {
             System.out.println("Cannot Transfer"+ e);
         }
         catch (SQLException ex){
-            throw new BankException("Sql Statement Error" + ex);
+            throw new BankException("Sql statement error for transfer this account");
         }
     }
 
@@ -177,7 +176,7 @@ public class BankServiceDB implements  BankService {
                 transactionList.add(transaction);
             }
         }catch (SQLException e){
-            throw new BankException("Sql Error"+ e);
+            throw new BankException("Sql statement error for list of transaction");
         }
         return transactionList;
     }
