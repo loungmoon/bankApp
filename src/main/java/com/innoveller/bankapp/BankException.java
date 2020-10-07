@@ -1,7 +1,9 @@
 package com.innoveller.bankapp;
-public class BankException extends Exception {
-    public BankException(String message) {
-        super(message);
-    }
 
+import java.sql.SQLException;
+
+public class BankException extends SQLException {
+    public BankException(String message,Exception cause) {
+        super(message,cause);
+    }
 }

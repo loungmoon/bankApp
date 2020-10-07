@@ -1,8 +1,6 @@
 package com.innoveller.bankapp;
-
 import java.time.LocalDate;
 import java.time.ZoneId;
-
 public class Transaction {
     private LocalDate transactionDate;
     private double amount ;
@@ -20,6 +18,10 @@ public class Transaction {
         return transactionDate;
     }
 
+    public Long getBankAccountId() {
+        return bankAccountId;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -27,5 +29,4 @@ public class Transaction {
     public TransactionType getTransactionType() {
         return transactionType;
     }
-
 }
