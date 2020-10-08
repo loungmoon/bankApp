@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 public class BankServiceDB implements BankService {
     Connection connection;
-
     {
         try {
             connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/bank_application_db", "postgres", "innoveller");
@@ -206,7 +205,7 @@ public class BankServiceDB implements BankService {
     }
 
     @Override
-    public List<Transaction> reportOfDateRange(LocalDate from_date,LocalDate to_date) {
+    public void reportOfDateRange(LocalDate from_date,LocalDate to_date) {
         List<Transaction> transactionList = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
@@ -230,13 +229,15 @@ public class BankServiceDB implements BankService {
                 System.out.println(e.getMessage());
             }
         }
-        return transactionList;
+       for(Transaction transaction:transactionList){
+           System.out.println("Transaction Type :"+transaction.getTransactionType() + " Amount : " + transaction.getAmount()+" Bank_Account_ID: "+transaction.getBankAccountId());
+       }
     }
 
 
 
     @Override
-    public List<Transaction> reportForOneDay(LocalDate date) {
+    public void reportForOneDay(LocalDate date) {
         List<Transaction> transactionList = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
@@ -260,6 +261,8 @@ public class BankServiceDB implements BankService {
                 System.out.println(e.getMessage());
             }
         }
-        return transactionList;
+        for(Transaction transaction:transactionList){
+            System.out.println("Transaction Type :"+transaction.getTransactionType() + " Amount : " + transaction.getAmount()+" Bank_Account_ID: "+transaction.getBankAccountId());
+        }
     }
     }

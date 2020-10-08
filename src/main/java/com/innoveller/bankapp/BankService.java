@@ -9,7 +9,7 @@ public interface BankService {
     void withdraw(BankAccount account,double amount);
     void transfer(BankAccount fromAccount,BankAccount toAccount,double amount);
     List<Transaction> getAccountTransactionList(BankAccount account);
-    List<Transaction> reportOfDateRange(LocalDate from_date,LocalDate to_date);
-    List<Transaction> reportForOneDay(LocalDate date);
+    void reportOfDateRange(LocalDate from_date,LocalDate to_date);
+    void reportForOneDay(LocalDate date);
 
 }

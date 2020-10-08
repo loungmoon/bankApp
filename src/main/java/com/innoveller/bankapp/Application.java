@@ -11,13 +11,10 @@ public class Application {
         //service.deposit(dawMyaAye,1000);
         //service.withdraw(dawMyaAye,100000);
         //service.transfer(dawMyaAye,uTunAung,100);
-//        List<Transaction> transactions = service.report(LocalDate.of(2020,10,1),LocalDate.of(2020,10,2));
-//        for (Transaction transaction : transactions) {
-//            System.out.println(transaction.getTransactionType() + " Amount " + transaction.getAmount() );
 
-        List<Transaction> transactions = service.reportForOneDay(LocalDate.of(2020,9,30));
-        for (Transaction transaction : transactions) {
-            System.out.println(transaction.getTransactionType() + " Amount " + transaction.getAmount() );
+       // service.reportOfDateRange(LocalDate.of(2020,9,1),LocalDate.of(2020,10,));
+
+        service.reportForOneDay(LocalDate.of(2020,9,30));
 
 //        List<Transaction> transactions = service.getAccountTransactionList(uTunAung);
 //        System.out.println(transactions);
@@ -27,4 +24,4 @@ public class Application {
             // System.out.println(dawMyaAye.balance);
               }
         }
-    }
+
