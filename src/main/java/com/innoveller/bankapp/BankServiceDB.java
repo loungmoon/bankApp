@@ -117,7 +117,6 @@ public class BankServiceDB implements BankService {
             statement.setDate(4, Date.valueOf(date));
             statement.executeUpdate();
             statement.close();
-
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("select * from bank_account where bank_account.account_no =" + accountNo);
             rs.next();
@@ -233,8 +232,6 @@ public class BankServiceDB implements BankService {
            System.out.println("Transaction Type :"+transaction.getTransactionType() + " Amount : " + transaction.getAmount()+" Bank_Account_ID: "+transaction.getBankAccountId());
        }
     }
-
-
 
     @Override
     public void reportForOneDay(LocalDate date) {

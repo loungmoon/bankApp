@@ -1,25 +1,62 @@
 package com.innoveller.bankapp;
-import java.time.LocalDate;
 
+import javax.persistence.*;
+import java.sql.Date;
+
+
+@Table(name = "bank_account",schema = "public")
 public class BankAccount {
-    private Long id;
-    private int AccountNo;
-    private String accountHolder;
-    private BankAccountType accountType;
-    private LocalDate openDate;
-    public double balance;
 
-    public BankAccount(Long id, int accountNo, String accountHolder, BankAccountType accountType, LocalDate openDate, double balance) {
-        this.id = id;
-        AccountNo = accountNo;
-        this.accountHolder = accountHolder;
-        this.accountType = accountType;
-        this.openDate = openDate;
-        this.balance = balance;
-    }
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "account_no")
+    private int AccountNo;
+
+    @Column(name = "account_holder")
+    private String accountHolder;
+
+    @Column(name = "account_type")
+    private String accountType;
+
+    @Column(name = "open_date")
+    private Date opendate;
 
     public Long getId() {
         return id;
     }
 
+    public int getAccountNo() {
+        return AccountNo;
+    }
+
+    public void setAccountNo(int accountNo) {
+        AccountNo = accountNo;
+    }
+
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+
+    public void setAccountHolder(String accountHolder) {
+        this.accountHolder = accountHolder;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
+    }
+
+    public Date getOpendate() {
+        long millis=System.currentTimeMillis();
+        java.sql.Date date=new java.sql.Date(millis);
+        return date;
+    }
+
+    public void setOpendate(Date opendate) {
+        this.opendate = opendate;
+    }
 }

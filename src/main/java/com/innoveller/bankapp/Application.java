@@ -16,10 +16,10 @@ public class Application {
 
         service.reportForOneDay(LocalDate.of(2020,9,30));
 
-//        List<Transaction> transactions = service.getAccountTransactionList(uTunAung);
-//        System.out.println(transactions);
-//        for(Transaction transaction:transactions){
-//            System.out.println(transaction.getTransactionType() + " Amount "+transaction.getAmount()+" At Date"+transaction.getTransactionDate());
+        List<Transaction> transactions = service.getAccountTransactionList(uTunAung);
+        System.out.println(transactions);
+        for(Transaction transaction:transactions){
+            System.out.println(transaction.getTransactionType() + " Amount "+transaction.getAmount()+" At Date"+transaction.getTransactionDate());
 
             // System.out.println(dawMyaAye.balance);
               }
